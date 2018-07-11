@@ -108,6 +108,9 @@ hr{
     
 }
 /* INPUTS GLOBAL*/
+div .input{
+    width: 100px;
+}
 .input input{
     border-radius: 25px;
     padding: 10px 20px;
@@ -136,4 +139,75 @@ hr{
 .container .wrapper{
     padding-top: 20px;
     padding-bottom: 50px;
+}
+
+/* NEW DIARY ENTRY */
+.container .wrapper .holder{
+    width: 100%;
+    margin: 0;
+}
+.container .wrapper{
+    padding-left: 20px;
+}
+.side-menu{
+    padding: 0;
+    margin: 0;
+    width: 50%;
+    margin: 0;
+    float: left;
+}
+.side-menu h1{
+    font-size: 30px;
+    margin:0;
+    padding: 0 0 0 10px;
+    text-align: left;
+}
+.entry-form{
+    width: 50%;
+    margin: 0;
+    float: left;
+}
+.holder{
+    clear: both;
+}
+
+.side-menu li{
+    list-style-type: none;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    text-align: left; 
+    padding-top: 20px; 
+    
+} 
+.side-menu ul{
+    padding:0 0 0 0;
+    width: 100px;
+    margin: 0px; 
+}
+.side-menu li a{
+    text-decoration: none;
+    color: #00818a;
+}
+.side-menu li a:hover{
+    font-weight: bold;
+    color: #000000;
+}
+
+.entry-form h1{
+    font-size: 30px;
+    margin:0;
+    padding: 0 0 0 10px;
+    width: 200px;
+}
+#text-area{
+    padding: 0;
+    border-radius: 25px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background: #f4f4f4;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 50px;
+}
+.entry-form .button{
+    width: 120px;
 }
