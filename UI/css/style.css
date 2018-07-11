@@ -44,7 +44,7 @@ hr{
     margin-bottom: 30px;
     border-color: #74dac6;
 }
-/* buttons */
+/* buttons global*/
 .button{
     margin: 0;
     width: 100px;
@@ -56,6 +56,11 @@ hr{
     color: #ffffff;
     text-decoration: none;
 }
+.button:hover{
+    background: #00818a;
+    font-weight: bold;
+}
+/* buttons homepage */
 .button:first-of-type{
     margin-right: 20px;
 }
@@ -63,10 +68,7 @@ hr{
     color: #ffffff;
     text-decoration: none;
 }
-.button:hover{
-    background: #00818a;
-    font-weight: bold;
-}
+
 /* signin form begins here*/
 .signin{
     position: relative;
@@ -76,7 +78,7 @@ hr{
     padding: 0;
 
 }
-/* login wrapper */
+/* login wrapper for sign in page*/
 .container .wrapper{
     width: 60%;
     background: #fff;
@@ -99,12 +101,12 @@ hr{
 .container .wrapper p a:hover{
     color: #74dac6;
 }
-/* signin-form */
+/* signin-form class*/
 .signin-form button{
     display: block;
     
 }
-/* inputs */
+/* inputs global*/
 .input input{
     border-radius: 25px;
     padding: 10px 20px;
