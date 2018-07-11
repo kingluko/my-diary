@@ -1,4 +1,4 @@
-/* global */
+/*GLOBAL */
 body{
     padding: 0;
     margin: 0;
@@ -14,6 +14,7 @@ body{
     margin: auto;
     text-align: center;    
 }
+/* HOMEPAGE*/
 /* heading */
 .container h1{
     font-size: 120px;
@@ -44,7 +45,7 @@ hr{
     margin-bottom: 30px;
     border-color: #74dac6;
 }
-/* buttons global*/
+/* BUTTONS GLOBAL*/
 .button{
     margin: 0;
     width: 100px;
@@ -69,7 +70,7 @@ hr{
     text-decoration: none;
 }
 
-/* signin form begins here*/
+/* SIGNIN PAGE*/
 .signin{
     position: relative;
     margin:0;
@@ -106,7 +107,7 @@ hr{
     display: block;
     
 }
-/* inputs global*/
+/* INPUTS GLOBAL*/
 .input input{
     border-radius: 25px;
     padding: 10px 20px;
@@ -122,7 +123,7 @@ hr{
     width: 220px;
 }
 
-/* signup page */
+/* SIGN UP PAGE*/
 .signup h1{
     padding-top: 0;
     padding-bottom: 0;
