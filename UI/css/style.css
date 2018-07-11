@@ -53,6 +53,8 @@ hr{
     padding: 20px;
     border-radius: 300px;
     text-align: center;
+    color: #ffffff;
+    text-decoration: none;
 }
 .button:first-of-type{
     margin-right: 20px;
