@@ -104,7 +104,7 @@ hr{
     display: block;
     
 }
-/* input */
+/* inputs */
 .input input{
     border-radius: 25px;
     padding: 10px 20px;
@@ -118,4 +118,19 @@ hr{
     margin-left: 270px;
     margin-top: 20px;
     width: 220px;
+}
+
+/* signup page */
+.signup h1{
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.signup-submit button{
+    margin-left: 20px;
+    margin-top: 20px;
+    width: 220px;
+}
+.container .wrapper{
+    padding-top: 20px;
+    padding-bottom: 50px;
 }
