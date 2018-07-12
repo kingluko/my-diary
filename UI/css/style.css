@@ -212,6 +212,9 @@ div .input{
 .entry-form .button{
     width: 120px;
 }
+button.button:hover:nth-of-type(2){
+    background-color: red;
+}
 
 /* DIARY ENTRIES TABLE */
 table.entriestable {
