@@ -60,6 +60,8 @@ hr{
     text-align: center;
     color: #ffffff;
     text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
 }
 .button:hover{
     background: #00818a;
@@ -212,7 +214,7 @@ hr{
 .entry-form .button{
     width: 120px;
 }
-.entry-form button.button:hover:nth-of-type(2){
+.entry-form .button:hover:nth-of-type(2){
     background-color: red;
 }
 
@@ -263,11 +265,14 @@ table.entriestable tbody td a:hover{
 div.input label{
     margin-top: 20px;
 }
-.profile .button{
-    margin-top: 20px;    
+.container .wrapper .profile a.button{
+  margin-top: 20px;      
 }
-.profile button.button:hover:nth-of-type(2){
+.profile .button:hover:nth-of-type(2){
     background-color: red;
+}
+.user-button{
+    padding-top:10px;
 }
 /* VIEW ENTRY */
 .view-entry{
