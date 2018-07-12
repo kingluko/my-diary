@@ -152,8 +152,9 @@ div .input{
 .side-menu{
     padding: 0;
     margin: 0;
-    width: 50%;
+    width: 20%;
     margin: 0;
+    margin-right: 100px;
     float: left;
 }
 .side-menu h1{
@@ -210,4 +211,32 @@ div .input{
 }
 .entry-form .button{
     width: 120px;
+}
+
+/* DIARY ENTRIES TABLE */
+table.entriestable {
+    border: 1px solid #00818a;
+    background-color: #EEEEEE;
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    margin-top: 30px;
+}
+table.entriestable td{
+    border: 1px solid #AAAAAA;
+    padding: 3px 2px;
+}
+table.entriestable tbody td {
+    font-size: 16px;
+    color: #333333;
+    padding: 10px;
+    overflow: hidden;
+}
+table.entriestable tbody td a{
+    text-decoration: none;
+    color: #00818a;
+}
+table.entriestable tbody td a:hover{
+    font-weight: bold;
+    color: #000000;
 }
