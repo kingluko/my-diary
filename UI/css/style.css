@@ -1,4 +1,7 @@
 /*GLOBAL */
+html{
+    height: 100%;
+}
 body{
     padding: 0;
     margin: 0;
@@ -10,7 +13,8 @@ body{
     position: absolute;
     background-image: url(../img/background.jpg);
     background-repeat: no-repeat;    
-    background-position: center;           
+    background-position: center;
+               
     margin: auto;
     text-align: center;    
 }
@@ -47,7 +51,7 @@ hr{
 }
 /* BUTTONS GLOBAL*/
 .button{
-    margin: 0;
+    margin-right: 20px;
     width: 100px;
     background: #74dac6;
     border: 0;
@@ -62,9 +66,7 @@ hr{
     font-weight: bold;
 }
 /* buttons homepage */
-.button:first-of-type{
-    margin-right: 20px;
-}
+
 .button a{
     color: #ffffff;
     text-decoration: none;
@@ -77,7 +79,6 @@ hr{
 }
 .signin h1{
     padding: 0;
-
 }
 /* login wrapper for sign in page*/
 .container .wrapper{
@@ -108,9 +109,8 @@ hr{
     
 }
 /* INPUTS GLOBAL*/
-div .input{
-    width: 100%;
-}
+
+
 .input input{
     border-radius: 25px;
     padding: 10px 20px;
@@ -121,7 +121,7 @@ div .input{
     font-family: Arial, Helvetica, sans-serif;
 }
 .signin-submit .button{
-    margin-left: 270px;
+    margin: auto;
     margin-top: 20px;
     width: 220px;
 }
@@ -212,7 +212,7 @@ div .input{
 .entry-form .button{
     width: 120px;
 }
-button.button:hover:nth-of-type(2){
+.entry-form button.button:hover:nth-of-type(2){
     background-color: red;
 }
 
@@ -250,7 +250,7 @@ table.entriestable tbody td a:hover{
 }
 .profile{
     width: 50%;
-    text-align: justify;
+    text-align: left;
     float: left;
 }
 .profile form{
@@ -265,6 +265,9 @@ div.input label{
 }
 .profile .button{
     margin-top: 20px;    
+}
+.profile button.button:hover:nth-of-type(2){
+    background-color: red;
 }
 /* VIEW ENTRY */
 .view-entry{
@@ -282,4 +285,27 @@ div.input label{
     margin: 0;
     text-align: left;
     width: 100%;
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 890px){
+    
+.container h1 {
+    font-size: 30px;
+}
+p#slogan{
+    font-size: 30px;
+}
+button.button, .signup-submit button,.entry-form .button, .signin-submit .button {
+    width: 60%;
+    margin-top: 15px;
+    font-size: 12px;
+    border-radius: 50px;
+}
+textarea#text-area{
+    width: 100%;
+}
+.input input{
+    width:60%;
+}
 }
