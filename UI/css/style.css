@@ -109,7 +109,7 @@ hr{
 }
 /* INPUTS GLOBAL*/
 div .input{
-    width: 100px;
+    width: 100%;
 }
 .input input{
     border-radius: 25px;
@@ -242,4 +242,27 @@ table.entriestable tbody td a{
 table.entriestable tbody td a:hover{
     font-weight: bold;
     color: #000000;
+}
+/* USER PROFILE */
+.profile h1{
+    font-size: 30px;
+    padding: 0;   
+}
+.profile{
+    width: 50%;
+    text-align: justify;
+    float: left;
+}
+.profile form{
+    margin: 0;
+    clear: both;
+}
+.profile div{
+    margin-top: 20px;
+}
+div.input label{
+    margin-top: 20px;
+}
+.profile .button{
+    margin-top: 20px;    
 }
