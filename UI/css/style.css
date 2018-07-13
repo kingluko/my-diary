@@ -301,7 +301,7 @@ div.input label{
 p#slogan{
     font-size: 30px;
 }
-button.button, .signup-submit button,.entry-form .button, .signin-submit .button {
+.button, .signup-submit .button,.entry-form .button, .signin-submit .button {
     width: 60%;
     margin-top: 15px;
     font-size: 12px;
@@ -313,4 +313,12 @@ textarea#text-area{
 .input input{
     width:60%;
 }
+}
+@media(max-width: 599px){
+    .button, .signup-submit .button,.entry-form .button, .signin-submit .button {
+        width: 60%;
+        margin-top: 15px;
+        font-size: 9px;
+        border-radius: 50px;
+    }
 }
