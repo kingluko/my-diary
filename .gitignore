@@ -124,6 +124,7 @@ venv.bak/
 
 ### Python Patch ###
 .venv/
+.vscode
 
 ### venv ###
 # Virtualenv
