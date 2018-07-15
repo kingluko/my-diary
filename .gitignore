@@ -125,6 +125,7 @@ venv.bak/
 ### Python Patch ###
 .venv/
 .vscode
+__pycache__
 
 ### venv ###
 # Virtualenv
