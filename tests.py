@@ -14,9 +14,9 @@ class TestEntries(unittest.TestCase):
         self.app_context.push()
         self.data = [{
                 "title": 'title of the article',
-                "date modified": datetime.datetime.now(),
+                "date modified": str(datetime.datetime.now()),
                 "story": "story about the entry"
-        },]
+        }]
             
     def test_create_entry(self):
         """Test is API can create entry"""
