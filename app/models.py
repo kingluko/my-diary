@@ -1,28 +1,19 @@
 import datetime
 
 
-
-class Users():
-    def create_user(self):
-        pass
+class User:
+    def __init__(self, id, firstname, lastname, email, password):
+        self.id = id
+        self.firstname = firstname
+        self.lastname = lastname
+        self.email = email
+        self.password = password
     
-    def view_profile(self):
-        pass
-
-
-
 
 class Entries():
-    def __init__(self):
-        pass
-    def add_entry(self):
-        pass
-
-    def modify_entry(self, id):
-        pass
-    
-    def get_entries(self):
-        pass
-
-    def get_one_entry(self, id):
-        pass
+    def __init__(self, id, title, story, user_id):
+        self.id = id
+        self.title = title
+        self.date_created = datetime.datetime.now()
+        self.story = story
+        self.user_id = user_id  
