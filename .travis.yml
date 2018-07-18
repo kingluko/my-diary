@@ -9,6 +9,7 @@ install:
 after_success:
   - coveralls
 
-script: pytest
+script:
+- python -m pytest --cov-report term-missing --cov=app
 
 cache: pip
