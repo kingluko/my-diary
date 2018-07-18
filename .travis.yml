@@ -1,1 +1,14 @@
 language: python
+
+python:
+  - "3.6"
+
+install:
+  - pip install -r requirements.txt
+
+after_success:
+  - coveralls
+
+script: pytest
+
+cache: pip
