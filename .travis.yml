@@ -16,3 +16,5 @@ after_success:
 
 after_success:
   coveralls
+
+cache: pip
