@@ -12,11 +12,11 @@ class TestEntries(unittest.TestCase):
         self.client = self.app.test_client()
         self.app_context = self.app.app_context()
         self.app_context.push()
-        self.data = [{
-                "title": 'title of the article',
-                "date modified": str(datetime.datetime.now()),
+        self.data = {
+                "id" : 100,
+                "title": 'title of the article',               
                 "story": "story about the entry"
-        }]
+        }
             
     def test_create_entry(self):
         """Test is API can create entry"""
@@ -40,6 +40,5 @@ class TestEntries(unittest.TestCase):
     def test_get_single_entry(self):
         """"Tests API can get a single entry using id"""
         response = self.client.get('/api/v1/entries/1', data = json.dumps(self.data), content_type = 'application/json')
-        results = json.loads(response.data)
         self.assertEqual(response.status_code, 200)
-        self.assertIn('title', str(results.data))
+        

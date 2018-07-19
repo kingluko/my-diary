@@ -33,7 +33,7 @@ def get_one_entry(id):
 
 @app.route('/api/v1/entries', methods =['POST'])
 def create_entry():
-    request_data = request.get_json()      
+    request_data = request.get_json()     
     new_entry = {
         'title': request_data['title'],
         'story': request_data['story']
