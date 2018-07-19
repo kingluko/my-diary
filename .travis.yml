@@ -6,11 +6,10 @@ python:
 install:
   - pip install -r requirements.txt
 
-  - pip install coveralls
-
+ 
 script:
-  - pytest
-  - coverage run --source=app -m pytest  && coverage report
+  - pytest  
+  - python -m pytest --cov-report term-missing --cov=app
 
 after_success:
   - coveralls
