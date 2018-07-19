@@ -26,36 +26,30 @@ def fetch_all_entries():
     return jsonify(entries_data), 200
 
 @app.route('/api/v1/entries/<int:id>', methods = ['GET'])
-def get_one_entry():
+def get_one_entry(id):
     for entry in entries_data:
         if entry['id'] == id:
-            return entry, 200
-        else:
-            return jsonify({'message': 'Entry not found'})
+            return jsonify(entry), 200
+    return jsonify({'message': 'Entry not found'})
 
 @app.route('/api/v1/entries', methods =['POST'])
 def create_entry():
     request_data = request.get_json()      
     new_entry = {
-        'id': id,
         'title': request_data['title'],
         'story': request_data['story']
     }
     entries_data.append(new_entry)    
-    return {'message' : "Entry Added", 'entries': jsonify(entries_data)}, 201
+    return jsonify({'message' : "Entry Added"}), 201
 
 @app.route('/api/v1/entries/<int:id>', methods = ['PUT'])
-def update_entry():
+def update_entry(id):
     for entry in entries_data:
-        if id == entry['id']:            
+        if entry['id'] == id:            
                 request_data = request.get_json()
-                update_entry = {
-                    'title': request_data['title'],
-                    'story': request_data['story']
-                      }
-                entry['title'] = update_entry['title']
-                entry['story'] = update_entry['story']
-                return {'message' : "The entry has been modified successfully", 'entry': entry}, 200    
+                entry['title'] = request_data['title']
+                entry['story'] = request_data['story']                  
+                return jsonify({'message' : "The entry has been modified successfully"}), 200    
     
 
 if __name__ == '__main__':
