@@ -2,7 +2,7 @@ import datetime
 
 
 class User:
-    def __init__(self, id, firstname, lastname, email, password):
+    def __init__(self, firstname, lastname, email, password):
         self.id = id
         self.firstname = firstname
         self.lastname = lastname
@@ -11,9 +11,10 @@ class User:
     
 
 class Entries():
-    def __init__(self, id, title, story, user_id):
-        self.id = id
+    """This method initializes the entry"""
+    def __init__(self, title, story, date_created, user_id):
+        self.id = 0
         self.title = title
-        self.date_created = datetime.datetime.now()
+        self.date_created = date_created
         self.story = story
         self.user_id = user_id  
