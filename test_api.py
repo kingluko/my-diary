@@ -32,7 +32,7 @@ class TestEntries(unittest.TestCase):
 
     def test_modify_entry(self):
         """Test if API can modify and entry"""
-        response = self.client.put('/api/v1/entries/1', data = json.dumps(self.data), content_type = 'application/json')
+        response = self.client.put('/api/v1/entries/2', data = json.dumps(self.data), content_type = 'application/json')
         results = json.loads(response.data)
         self.assertEqual(results["message"], "The entry has been modified successfully")
         self.assertEqual(response.status_code, 200)
