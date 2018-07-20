@@ -1,15 +1,12 @@
 language: python
-
 python:
-  - "3.6"
-
+  - "3.6.5"
+  
 install:
   - pip install -r requirements.txt
+# command to run tests
+script:
+  - pytest
 
 after_success:
-  - coveralls
-
-script:
-- python -m pytest --cov-report term-missing --cov=app
-
-cache: pip
+     - "coveralls"
