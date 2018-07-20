@@ -49,9 +49,9 @@ def update_entry(id):
                 request_data = request.get_json()
                 entry['title'] = request_data['title']
                 entry['story'] = request_data['story']                  
-                return jsonify({'message' : "The entry has been modified successfully"}), 200    
-        else:
-            return jsonify({'message': "ID not found"})
+                return jsonify({'message' : "The entry has been modified successfully"}), 200
+         
+        
     
 
 if __name__ == '__main__':
