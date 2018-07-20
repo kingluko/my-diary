@@ -29,7 +29,8 @@ def get_one_entry(id):
     for entry in entries_data:
         if entry['id'] == id:
             return jsonify(entry), 200
-    return jsonify({'message': 'Entry not found'})
+        else:
+            return jsonify({'message': 'Entry not found'})
 
 @app.route('/api/v1/entries', methods =['POST'])
 def create_entry():
@@ -49,6 +50,8 @@ def update_entry(id):
                 entry['title'] = request_data['title']
                 entry['story'] = request_data['story']                  
                 return jsonify({'message' : "The entry has been modified successfully"}), 200    
+        else:
+            return jsonify({'message': "ID not found"})
     
 
 if __name__ == '__main__':
