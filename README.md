@@ -31,5 +31,5 @@ pip install -r requirements.txt
  python run.py
 
 # Live App on heroku
-https://my-diary-kelvin.herokuapp.com/api/v1/ **<endpoint>**
+https://my-diary-kelvin.herokuapp.com/api/v1/entries
 
