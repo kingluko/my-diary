@@ -47,7 +47,7 @@ def update_entry(id):
 
 @app.route('/api/v1/entries/<int:id>', methods=['DELETE'])
 def delete_entry(id):
-    for entry in entries_data:        
+    for entry in entries_data:
         if entry['id'] == id:
             del (entry['id'], entry['title'], entry['story'])
             return jsonify({'message': " Entry deleted successfully"})
