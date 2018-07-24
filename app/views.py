@@ -31,6 +31,9 @@ def create_entry():
         'title': request_data['title'],
         'story': request_data['story']
     }
+    for entry in entries_data:
+        if request_data['id'] == entry['id']:
+            return jsonify({'message': 'Entry already exists'}), 400
     entries_data.append(new_entry)
     return jsonify({'message': "Entry Added"}), 201
 
@@ -40,8 +43,8 @@ def update_entry(id):
     for entry in entries_data:
         if entry['id'] == id:
                 request_data = request.get_json()
-                entry['title'] = request_data['title']
-                entry['story'] = request_data['story']
+                new_entry = {'title': request_data['title'], 'story': request_data['story']}
+                entry.update(new_entry)
                 return jsonify({'message': "Entry modified successfully"}), 200
 
 
@@ -50,9 +53,8 @@ def delete_entry(id):
     for entry in entries_data:
         if entry['id'] == id:
             entries_data.remove(entry)
-            return jsonify({'message': " Entry deleted successfully"})
-        else:
-            return jsonify({'message': 'Entry not found'}), 404
+            return jsonify({'message': "Entry deleted successfully"})
+    return jsonify({'message': 'Entry not found'}), 404
 
 if __name__ == '__main__':
     app.run(debug=True)
