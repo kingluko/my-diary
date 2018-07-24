@@ -21,13 +21,13 @@ This application contains the following endpoints for the API
 - Pytest (Tool for testing)
 
 # Installing
-**Clone the repository**
- git clone https://github.com/kingluko/my-diary.git
-**Create a virtual environment to install the dependencies**
- virtualenv --python=python3 yourenvname
-**Install requirements within the virtual environment**
+- **Clone the repository**<br>
+git clone https://github.com/kingluko/my-diary.git
+- **Create a virtual environment to install the dependencies**<br>
+virtualenv --python=python3 yourenvname
+- **Install requirements within the virtual environment** <br>
 pip install -r requirements.txt
-**Running the program**
+- **Running the program**<br>
  python run.py
 
 # Live App on heroku
