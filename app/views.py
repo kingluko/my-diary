@@ -49,7 +49,7 @@ def update_entry(id):
 def delete_entry(id):
     for entry in entries_data:
         if entry['id'] == id:
-            del (entry['id'], entry['title'], entry['story'])
+            entries_data.remove(entry)
             return jsonify({'message': " Entry deleted successfully"})
         else:
             return jsonify({'message': 'Entry not found'}), 404
