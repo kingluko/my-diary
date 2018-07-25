@@ -6,7 +6,8 @@ class DbConnect:
     def __init__(self):
         try:
             # Create connection using psycopg2
-            self.connect = psycopg2.connect("dbname=diary user=kitika password=spongebob host=localhost")
+            self.connect = psycopg2.connect(
+                "dbname=diary user=kitika password=spongebob host=localhost")
             # activates the connection cursor
             self.connect.autocommit = True
             self.cursor = self.connect.cursor()
