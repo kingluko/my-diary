@@ -45,6 +45,7 @@ class TestUsers(unittest.TestCase):
         self.assertEqual(rs.status_code, 200)
         rp = json.loads(rs.data)
         self.assertEqual(rp["message"], "Sign In Successful")
+        
     def test_wrong_signin(self):
         """This method tests for invalid sign in"""
         rs = self.client.post('/api/v1/auth/signin', data=json.dumps({"username": "wrong", "password": "wrong"}), content_type='application/json')
