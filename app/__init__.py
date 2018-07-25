@@ -10,7 +10,7 @@ def create_app(configuration):
     app.config.from_object(config_app[configuration])
     app.config.from_pyfile('config.py')
 
-    from resources.entries_entries import AllEntries, SingleEntry
+    from resources.entries_resource import AllEntries, SingleEntry
     from resources.user_resource import SigninResource, SignupResource
 
     api.add_resource(SignupResource, '/api/v1/auth/signup')
