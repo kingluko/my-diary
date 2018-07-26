@@ -1,46 +1,53 @@
-from flask import jsonify
+from flask import jsonify, json
 from flask_restful import reqparse, Resource, inputs
 import re
+from app.models import Users, Entries
 
 
 class SignupResource(Resource):
     """This class allows the user to register on the app"""
     # Validate the data that comes from the user
     parser = reqparse.RequestParser()
-    parser.add_argument('name', required=True, type=inputs.regex(r"(.*\S.*)"), help='Enter a Valid Name')
-    parser.add_argument('email', required=True, help='Please Enter Email!')
-    parser.add_argument('username', required=True, help='Please Enter Username!')
-    parser.add_argument('password', required=True, help='Set a password!')
+    parser.add_argument(
+        'name',
+        required=True,
+        trim=True,
+        type=inputs.regex(r"(.*\S.*)"),
+        help='Enter a Valid Name')
+    parser.add_argument(
+        'email',
+        required=True,
+        type=inputs.regex(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"),
+        help='Enter a Valid Email!')
+    parser.add_argument(
+        'username',
+        required=True,
+        trim=True,
+        help='Enter a valid username!')
+    parser.add_argument(
+        'password',
+        required=True,
+        trim=True,
+        help='Enter a valid password!')
 
     def post(self):
         results = SignupResource.parser.parse_args()
+        name = results.get('name')
         username = results.get('username')
         password = results.get('password')
         email = results.get('email')
-# Validate on entry
-        regex_email = re.compile(
-            r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
-        regex_name = re.compile(r"[a-zA-Z0-9- .]+$")
+        # Validate on entry
+        if len(username) < 4:
+            return {'message': 'Username cannot be less than 4'}
+        if len(password) < 6:
+            return {'message': 'Password cannot be less than 6'}
+        # Check if email exists on db
 
-        if len(username) < 5:
-            return jsonify({
-                'message': 'Username should be more than 4 characters'}), 400
-        if not (re.match(regex_email, email)):
-            return jsonify({
-                'messgage': 'Email should be in someone@someone.com format'}), 400
-        elif not (re.match(regex_name, username)):
-            return jsonify({'message': 'Please use a valid username'}), 400
-        if username == " " or password == " ":
-            return jsonify({'message': 'Please enter details'}), 400
-
-        return jsonify(password)
-"""Check username if exists and email"""
-# Creater user instance
-# user_details = (username = username, email = email, password = password)
-# user = User(username=username, email=email, password=password)
-# user.add
-# user=User.get('users', username=username)
-# return {'message': 'Successfully registered', 'user': User.user_dict(user)}, 201
+        # if not sign up
+        user = Users(
+            name=name, email=email, username=username, password=password)
+        Users.signup_user(user)
+        return {'message': 'You have registered succesfully'}, 201
 
 
 class SigninResource(Resource):
@@ -57,7 +64,7 @@ class SigninResource(Resource):
 
         # Validate user inputs
         if not username or password:
-            return jsonify({'message': 'Fields cannot be blank'}), 400
+            return {'message': 'Fields cannot be blank'}, 400
         else:
             
             return jsonify(username, password)
