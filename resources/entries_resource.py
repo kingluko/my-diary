@@ -3,15 +3,7 @@ from flask_restful import reqparse, Resource
 
 
 class AllEntries(Resource):
-    """Adds an Entry and gets a list of all entries"""
-    def __init__(self):
-        self.reqparse = reqparse.RequestParser()
-        self.reqparse.add_argument(
-            'title', required=True, trim=True,
-            help='Provide a valid title')
-        self.reqparse.add_argument(
-            'story', required=True, trim=True,
-            help='Please enter a valid story')
+    """Validates all entries on entry"""
 
     def post(self):
         """Add an Entry"""
