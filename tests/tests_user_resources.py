@@ -26,7 +26,8 @@ class TestUsers(unittest.TestCase):
 
     def test_no_pass(self):
         """This method tests to ensure all fields are entered"""
-        rs = self.client.post('/api/v1/auth/signup', data=json.dumps({"username": "username", "password": " "}), content_type='application/json')
+        rs = self.client.post('/api/v1/auth/signup', data=json.dumps({
+            "username": "username", "password": " "}), content_type='application/json')
         self.assertEqual(rs.status_code, 400)
         rp = json.load(rs.data)
         self.assertEqual(rp["message"], "All fields are required")
