@@ -14,19 +14,16 @@ class Users:
         self.password = sha256_crypt.encrypt(str(password))
 
     def signup_user(self):
-        db.query("""INSERT INTO users(name, username, email, password)
-        VALUES({}, {}, {}, {})""".format(
-            self.name, self.username, self.email, self.password))
-
-        return "Registration Successful"
+        db.query(
+            "INSERT INTO users(name, email, username, password) VALUES(%s, %s, %s, %s)",
+            (self.name, self.email, self.username, self.password))
 
     def signin_user(self):
-        result = db.query(
-            """SELECT * FROM users WHERE username = %s""", self.username)
-        if result > 0:
-            data = db.fetchone
-            print(data)
-
+        db.query(
+            """SELECT * FROM users WHERE username='{}'""".format(self.username))
+        db.fetchall
+        # Fetch for password and add user token
+        
 
 class Entries:
     pass
