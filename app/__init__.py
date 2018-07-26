@@ -1,6 +1,32 @@
 from flask import Flask
 from flask_restful import Api, Resource
 from instance.config import config_app
+import psycopg2
+
+
+class DbConnection():
+    """Initializes connection to the database and executes queries"""
+    def __init__(self):
+        self.conn = psycopg2.connect(
+            "dbname=my-diary user=kelvin password=spongebob host=localhost")
+        self.cur = self.conn.cursor()
+        self.conn.autocommit = True
+
+    def query(self, *args):
+        self.cur.execute(*args)
+
+    def commit(self):
+        self.conn.commit()
+
+    def close(self):
+        self.cur.close()
+        self.conn.close()
+
+    def fetchone(self):
+        self.cur.fetchone()
+
+    def fetchall(self):
+        self.cur.fetchall()
 
 
 def create_app(configuration):
