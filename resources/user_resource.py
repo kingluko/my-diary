@@ -32,11 +32,29 @@ class SignupResource(Resource):
         if username == " " or password == " ":
             return jsonify({'message': 'Please enter details'}), 400
 """Check username if exists and email"""
-# Creater user instance 
+# Creater user instance
+# user_details = (username = username, email = email, password = password)
 # user = User(username=username, email=email, password=password)
 # user.add
 # user=User.get('users', username=username)
 # return {'message': 'Successfully registered', 'user': User.user_dict(user)}, 201
 
+
 class SigninResource(Resource):
-    pass
+    """THis class allows the user to sign in to the app"""
+    # Validate infformation entered by the user
+    parser = reqparse.RequestParser()
+    parser.add_argument('username', required=True, help='Enter Username')
+    parser.add_argument('password', required=True, help='Enter Password')
+
+    def post(self):
+        results = SigninResource.parser.parse_args()
+        username = results.get('username')
+        password = results.get('password')
+
+        # Validate user inputs
+        if not username or password:
+            return jsonify({'message': 'Fields cannot be blank'}), 400
+
+        return jsonify(username, password)
+# Get infromation from the database and check it
