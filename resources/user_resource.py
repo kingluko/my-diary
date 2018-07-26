@@ -1,5 +1,5 @@
 from flask import jsonify
-from flask_restful import reqparse, Resource
+from flask_restful import reqparse, Resource, inputs
 import re
 
 
@@ -7,6 +7,7 @@ class SignupResource(Resource):
     """This class allows the user to register on the app"""
     # Validate the data that comes from the user
     parser = reqparse.RequestParser()
+    parser.add_argument('name', required=True, type=inputs.regex(r"(.*\S.*)"), help='Enter a Valid Name')
     parser.add_argument('email', required=True, help='Please Enter Email!')
     parser.add_argument('username', required=True, help='Please Enter Username!')
     parser.add_argument('password', required=True, help='Set a password!')
@@ -16,7 +17,7 @@ class SignupResource(Resource):
         username = results.get('username')
         password = results.get('password')
         email = results.get('email')
-
+# Validate on entry
         regex_email = re.compile(
             r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
         regex_name = re.compile(r"[a-zA-Z0-9- .]+$")
@@ -31,6 +32,8 @@ class SignupResource(Resource):
             return jsonify({'message': 'Please use a valid username'}), 400
         if username == " " or password == " ":
             return jsonify({'message': 'Please enter details'}), 400
+
+        return jsonify(password)
 """Check username if exists and email"""
 # Creater user instance
 # user_details = (username = username, email = email, password = password)
@@ -55,6 +58,7 @@ class SigninResource(Resource):
         # Validate user inputs
         if not username or password:
             return jsonify({'message': 'Fields cannot be blank'}), 400
-
-        return jsonify(username, password)
+        else:
+            
+            return jsonify(username, password)
 # Get infromation from the database and check it
