@@ -22,6 +22,7 @@ class Users:
         db.query(
             """SELECT * FROM users WHERE username='{}'""".format(self.username))
         db.fetchall
+        
         # Fetch for password and add user token
         
 
