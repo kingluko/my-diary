@@ -2,7 +2,10 @@ from flask import jsonify, json
 from flask_restful import reqparse, Resource, inputs
 import re
 from app.models import Users, Entries
+from app import DbConnection
+from passlib.hash import sha256_crypt
 
+db = DbConnection()
 
 class SignupResource(Resource):
     """This class allows the user to register on the app"""
@@ -54,18 +57,34 @@ class SigninResource(Resource):
     """THis class allows the user to sign in to the app"""
     # Validate infformation entered by the user
     parser = reqparse.RequestParser()
-    parser.add_argument('username', required=True, help='Enter Username')
-    parser.add_argument('password', required=True, help='Enter Password')
+    parser.add_argument(
+        'username',
+        required=True,
+        trim=True,
+        help='Enter a valid username')
+    parser.add_argument(
+        'password',
+        required=True,
+        trim=True,
+        help='Enter a valid password')
 
     def post(self):
         results = SigninResource.parser.parse_args()
         username = results.get('username')
-        password = results.get('password')
+        password_entered = results.get('password')
 
-        # Validate user inputs
-        if not username or password:
-            return {'message': 'Fields cannot be blank'}, 400
+        # check if the username exists
+        db.query(
+            "SELECT * FROM users WHERE username = %s", [username])
+        # Check if the username exists
+        results = db.cur.fetchone()
+        if results:
+            password = results[4]
+            if sha256_crypt.verify(password_entered, password):
+                return {'message': 'You have successfully logged in'}
+                # FIXME
+                # Assign user token and login
+            else:
+                return {'message': 'Invalid password'}
         else:
-            
-            return jsonify(username, password)
-# Get infromation from the database and check it
+            return {'message': 'User not found'}  
