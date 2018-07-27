@@ -8,9 +8,9 @@ class DbConnection():
     """Initializes connection to the database and executes queries"""
     def __init__(self):
         self.conn = psycopg2.connect(
-            "dbname=my-diary user=kelvin password=spongebob host=localhost")
-        self.cur = self.conn.cursor()
+            "dbname=my-diary user=kelvin password=spongebob host=localhost")        
         self.conn.autocommit = True
+        self.cur = self.conn.cursor()      
 
     def query(self, *args):
         self.cur.execute(*args)
@@ -22,11 +22,11 @@ class DbConnection():
         self.cur.close()
         self.conn.close()
 
-    def fetchone(self):
-        self.cur.fetchone()
+    # def fetchone(self, *args):
+    #     self.cur.fetchone(*args)
 
-    def fetchall(self):
-        self.cur.fetchall()
+    # def fetchall(self, *args):
+    #     self.cur.fetchall(*args)
 
 
 def create_app(configuration):
@@ -38,8 +38,11 @@ def create_app(configuration):
 
     from resources.entries_resource import AllEntries, SingleEntry
     from resources.user_resource import SigninResource, SignupResource
+    # FIXME
+    # use fstring to map url
+    # url = "api/v1" 
 
-    api.add_resource(SignupResource, '/api/v1/auth/signup')
+    api.add_resource(SignupResource, '/api/auth/signup')
     api.add_resource(SigninResource, '/api/v1/auth/signin')
     api.add_resource(AllEntries, '/api/v1/entries')
     api.add_resource(SingleEntry, '/api/v1/entries/<int:id>')
