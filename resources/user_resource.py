@@ -7,6 +7,7 @@ from passlib.hash import sha256_crypt
 
 db = DbConnection()
 
+
 class SignupResource(Resource):
     """This class allows the user to register on the app"""
     # Validate the data that comes from the user
