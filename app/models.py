@@ -16,14 +16,9 @@ class Users:
     def signup_user(self):
         db.query(
             "INSERT INTO users(name, email, username, password) VALUES(%s, %s, %s, %s)",
-            (self.name, self.email, self.username, self.password))
-
-    def signin_user(self):
-        db.query(
-            """SELECT * FROM users WHERE username='{}'""".format(self.username))
-        db.fetchall
+            (self.name, self.email, self.username, self.password))    
         
-        # Fetch for password and add user token
+        
         
 
 class Entries:
