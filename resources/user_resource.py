@@ -42,16 +42,21 @@ class SignupResource(Resource):
         email = results.get('email')
         # Validate on entry
         if len(username) < 4:
-            return {'message': 'Username cannot be less than 4'}
+            return {'message': 'Username cannot be less than 4'}, 400
         if len(password) < 6:
-            return {'message': 'Password cannot be less than 6'}
+            return {'message': 'Password cannot be less than 6'}, 400
         # Check if email exists on db
-
+        db.query("SELECT * FROM users WHERE email = %s", [email])
         # if not sign up
-        user = Users(
-            name=name, email=email, username=username, password=password)
-        Users.signup_user(user)
-        return {'message': 'You have registered succesfully'}, 201
+        db.query("SELECT * FROM users WHERE email = %s", [email])
+        data = db.cur.fetchone()
+        if not data:
+            user = Users(
+                name=name, email=email, username=username, password=password)
+            Users.signup_user(user)
+            return {'message': 'You have registered succesfully'}, 201
+        else:
+            return {'message': 'User already exists'}, 400
 
 
 class SigninResource(Resource):
@@ -82,10 +87,10 @@ class SigninResource(Resource):
         if results:
             password = results[4]
             if sha256_crypt.verify(password_entered, password):
-                return {'message': 'You have successfully logged in'}
+                return {'message': 'You have successfully logged in'}, 201
                 # FIXME
                 # Assign user token and login
             else:
-                return {'message': 'Invalid password'}
+                return {'message': 'Invalid password'}, 400
         else:
-            return {'message': 'User not found'}  
+            return {'message': 'User not found'}, 400
