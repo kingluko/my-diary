@@ -42,7 +42,7 @@ def create_app(configuration):
     # use fstring to map url
     # url = "api/v1" 
 
-    api.add_resource(SignupResource, '/api/auth/signup')
+    api.add_resource(SignupResource, '/api/v1/auth/signup')
     api.add_resource(SigninResource, '/api/v1/auth/signin')
     api.add_resource(AllEntries, '/api/v1/entries')
     api.add_resource(SingleEntry, '/api/v1/entries/<int:id>')
