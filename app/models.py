@@ -32,7 +32,7 @@ class Entries:
         db.query(
             "INSERT INTO entries(user_id, title, story) VALUES(%s, %s, %s)",
             (self.user_id, self.title, self.story))
-        db.close()
+        
 
     @staticmethod
     def get(user_id, entry_id=None):

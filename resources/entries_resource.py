@@ -43,8 +43,7 @@ class AllEntries(Resource):
             return {
                 'message': 'Entries found', 'entry': Entries.make_dict(entry)}
         else:
-            return {'message': 'Entries not found'}
-        db.close()      
+            return {'message': 'Entries not found'}            
 
 
 class SingleEntry(Resource):
@@ -72,8 +71,7 @@ class SingleEntry(Resource):
             return {
                 'message': 'Entry found', 'entry': Entries.make_dict(entry)}
         else:
-            return {'message': 'Entry not found'}, 404
-        db.close()
+            return {'message': 'Entry not found'}, 404        
 
     @is_logged_in
     def delete(self, user_id, entry_id):
