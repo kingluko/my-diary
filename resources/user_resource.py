@@ -1,9 +1,13 @@
 from flask import jsonify, json
 from flask_restful import reqparse, Resource, inputs
 import re
+import datetime
 from app.models import Users, Entries
 from app import DbConnection
 from passlib.hash import sha256_crypt
+import jwt
+from instance.config import Config
+
 
 db = DbConnection()
 
@@ -21,7 +25,8 @@ class SignupResource(Resource):
     parser.add_argument(
         'email',
         required=True,
-        type=inputs.regex(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"),
+        type=inputs.regex(
+            r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"),
         help='Enter a Valid Email!')
     parser.add_argument(
         'username',
@@ -57,6 +62,8 @@ class SignupResource(Resource):
             return {'message': 'You have registered succesfully'}, 201
         else:
             return {'message': 'User already exists'}, 400
+# TODO
+# Make username and email unique
 
 
 class SigninResource(Resource):
@@ -83,14 +90,21 @@ class SigninResource(Resource):
         db.query(
             "SELECT * FROM users WHERE username = %s", [username])
         # Check if the username exists
-        results = db.cur.fetchone()
-        if results:
-            password = results[4]
+        data = db.cur.fetchone()
+        if data:
+            password = data[4]
             if sha256_crypt.verify(password_entered, password):
-                return {'message': 'You have successfully logged in'}, 201
+                # Generate a token for the user
+                user_id = int(data[0])                
+                token = jwt.encode(
+                    {'user_id': user_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
+                    str(Config.SECRET))                
+                return {'message': 'You have successfully logged in',
+                        'token': token.decode('UTF-8')}, 201
                 # FIXME
                 # Assign user token and login
             else:
                 return {'message': 'Invalid password'}, 400
         else:
             return {'message': 'User not found'}, 400
+        db.close()
