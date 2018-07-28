@@ -57,9 +57,10 @@ class Entries:
         for entry in entry_list:
             new_dict = {}
             new_dict.update({
+                'entry_id': entry[0],
                 'title': entry[2],
                 'story': entry[3],
-                'date_created': entry[4].isoformat()
+                'date_created': entry[4].strftime("%A, %d %B, %Y")
                 })
             entries.append(new_dict)
         return entries
