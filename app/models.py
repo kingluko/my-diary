@@ -32,13 +32,14 @@ class Entries:
         db.query(
             "INSERT INTO entries(user_id, title, story) VALUES(%s, %s, %s)",
             (self.user_id, self.title, self.story))
+        db.close()
 
     @staticmethod
     def get(user_id, entry_id=None):
         """This method is used to get a single or all entries"""
         if entry_id:
             db.query(
-                "SELECT * FROM entries WHERE user_id = %s AND entry_id = %s",
+                "SELECT * FROM entries WHERE user_id=%s AND entry_id=%s",
                 (user_id, entry_id)
             )
             entries = db.cur.fetchall()
@@ -63,8 +64,3 @@ class Entries:
             entries.append(new_dict)
         return entries
     pass
-#TODO
-# create token decorators that will encode user id and store it together with entry
-
-
-Entries.get(user_id=11, entry_id=4)
