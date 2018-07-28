@@ -20,7 +20,7 @@ class DbConnection():
 
     def close(self):
         self.cur.close()
-        self.conn.close()
+        
 
     # def fetchone(self, *args):
     #     self.cur.fetchone(*args)
@@ -45,6 +45,6 @@ def create_app(configuration):
     api.add_resource(SignupResource, '/api/v1/auth/signup')
     api.add_resource(SigninResource, '/api/v1/auth/signin')
     api.add_resource(AllEntries, '/api/v1/entries')
-    api.add_resource(SingleEntry, '/api/v1/entries/<int:id>')
+    api.add_resource(SingleEntry, '/api/v1/entries/<int:entry_id>')
 
     return app
