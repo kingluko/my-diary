@@ -10,7 +10,7 @@ class DbConnection():
         self.conn = psycopg2.connect(
             "dbname=my-diary user=kelvin password=spongebob host=localhost")        
         self.conn.autocommit = True
-        self.cur = self.conn.cursor()      
+        self.cur = self.conn.cursor()
 
     def query(self, *args):
         self.cur.execute(*args)
