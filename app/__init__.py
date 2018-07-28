@@ -20,13 +20,6 @@ class DbConnection():
 
     def close(self):
         self.cur.close()
-        
-
-    # def fetchone(self, *args):
-    #     self.cur.fetchone(*args)
-
-    # def fetchall(self, *args):
-    #     self.cur.fetchall(*args)
 
 
 def create_app(configuration):
