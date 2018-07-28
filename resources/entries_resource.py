@@ -1,6 +1,10 @@
-from flask import jsonify
+from flask import jsonify, request
 from flask_restful import reqparse, Resource
 from app.models import Users, Entries
+from app import DbConnection
+import json
+
+db = DbConnection()
 
 
 class AllEntries(Resource):
@@ -20,29 +24,56 @@ class AllEntries(Resource):
         trim=True,
         help='Enter a valid text')
 
-    def post(self):
-        """Add an Entry"""
+    def post(self, user_id):
         results = AllEntries.parser.parse_args()
         title = results.get('title')
         story = results.get('story')
 
-        #g flask
-        # entry = (title=title, story=story)
+        # Adding post to database
+        entry = user_id, title, story
+        Entries.post(entry)
+        db.close()
 
-    def get(self):
-        """Fetch all Entries by user"""
-        pass   
-
+    def get(self, user_id, entry_id=None):
+        """This method gets the entry for a given user"""
+        entry = Entries.get(user_id=user_id)
+        if entry:
+            return {
+                'message': 'Entry found', 'entry': Entries.make_dict(entry)}
+        else:
+            return {'message': 'Entry not found'}
+        db.close()
+        
 
 class SingleEntry(Resource):
-    def put(self, id):
+    def put(self, user_id, entry_id):
         """Edit an Entry"""
-        pass
+        entry = Entries.get(user_id=user_id, entry_id=entry_id)
+        if not entry:
+            return {'message': 'The entry does not exist'}, 404
+        else:
+            results = request.get_json()
+            new_title = results['title']
+            new_story = results['story']
 
-    def get(self, id):
-        """Edit a single entry"""
-        pass
+            db.query(
+                "UPDATE entries SET title=%s, story=%s WHERE entry_id=%s",
+                (new_title, new_story))
+            return{'message': 'Entry Updated'}
 
-    def delete(self, id):
-        """Delete a single entry"""
-        pass
+    def get(self, user_id, entry_id):
+        """This method gets a single entry"""
+        entry = Entries.get(user_id=user_id, entry_id=entry_id)
+        if entry:
+            return {
+                'message': 'Entry found', 'entry': Entries.make_dict(entry)}
+        else:
+            return {'message': 'Entry not found'}, 404
+        db.close()
+
+    def delete(self, user_id, entry_id):
+        """This method is used to delte an entry"""
+        entry = Entries.get(user_id=user_id, entry_id=entry_id)
+        if not entry:
+            return {'message': 'Entry not found'}, 404
+
