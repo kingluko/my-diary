@@ -2,13 +2,23 @@ from flask import Flask
 from flask_restful import Api, Resource
 from instance.config import config_app
 import psycopg2
+import os
+
+if config_app['development']:
+    db_name = os.getenv('DATABASE_NAME')
+elif config_app['testing']:
+    db_name = os.getenv('DATABASE_TESTS')
+
+db_user = os.getenv('DATABASE_USER')
+db_password = os.getenv('DATABASE_PASSWORD')
+db_host = os.getenv('DATABASE_HOST')
 
 
 class DbConnection():
     """Initializes connection to the database and executes queries"""
     def __init__(self):
         self.conn = psycopg2.connect(
-            "dbname=my-diary user=kelvin password=spongebob host=localhost")        
+            f"dbname={db_name} user={db_user} password={db_password} host={db_host}")
         self.conn.autocommit = True
         self.cur = self.conn.cursor()
 
