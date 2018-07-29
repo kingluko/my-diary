@@ -31,8 +31,7 @@ class Entries:
         """This method adds an entry into the database"""
         db.query(
             "INSERT INTO entries(user_id, title, story) VALUES(%s, %s, %s)",
-            (self.user_id, self.title, self.story))
-        
+            (self.user_id, self.title, self.story))        
 
     @staticmethod
     def get(user_id, entry_id=None):
