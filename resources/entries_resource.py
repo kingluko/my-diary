@@ -41,9 +41,9 @@ class AllEntries(Resource):
         entry = Entries.get(user_id=user_id)
         if entry:
             return {
-                'message': 'Entries found', 'entry': Entries.make_dict(entry)}
+                'message': 'Entries found', 'entry': Entries.make_dict(entry)}, 201
         else:
-            return {'message': 'Entries not found'}            
+            return {'message': 'Entries not found'}, 404            
 
 
 class SingleEntry(Resource):
