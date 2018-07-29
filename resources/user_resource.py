@@ -50,10 +50,9 @@ class SignupResource(Resource):
             return {'message': 'Username cannot be less than 4'}, 400
         if len(password) < 6:
             return {'message': 'Password cannot be less than 6'}, 400
-        # Check if email exists on db
-        db.query("SELECT * FROM users WHERE email = %s", [email])
+        # Check if email exists on db      
         # if not sign up
-        db.query("SELECT * FROM users WHERE email = %s", [email])
+        db.query("SELECT * FROM users WHERE email = %s OR username = %s", [email, username])
         data = db.cur.fetchone()
         if not data:
             user = Users(
