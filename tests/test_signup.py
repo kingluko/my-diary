@@ -56,9 +56,9 @@ class TestUsers(unittest.TestCase):
         self.assertEqual(rs.status_code, 400)   
 
     def tearDown(self):
-        # db.query("SELECT * FROM users WHERE username = %s", [self.data['username']])
-        # data = db.cur.fetchone()
-        # userid = data[0]        
-        # db.query("DELETE from entries WHERE user_id=%s", [userid])
+        db.query("SELECT * FROM users WHERE username = %s", [self.data['username']])
+        data = db.cur.fetchone()
+        userid = data[0]        
+        db.query("DELETE from entries WHERE user_id=%s", [userid])
         db.query("DELETE from users WHERE username=%s", [self.data['username']])
 
