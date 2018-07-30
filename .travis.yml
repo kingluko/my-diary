@@ -5,7 +5,7 @@ python:
   - "3.6.5"
 before_script:
   - psql -c 'CREATE DATABASE "my-diary";' -U postgres
-  - psql -c "CREATE USER kelvin WITH PASSWORD 'spongebob';" -U postgres 
+  - psql -c "CREATE USER 'kelvin' WITH PASSWORD 'spongebob';" -U postgres 
   - psql -c "CREATE TABLE users (id serial PRIMARY KEY, name VARCHAR(100), email VARCHAR(100), username VARCHAR(30), password VARCHAR(100));" -U postgres
   - psql -c "CREATE TABLE entries(entry_id serial, user_id INTEGER REFERENCES users(id), title VARCHAR(200), story TEXT, date_created TIMESTAMP DEFAULT NOW());" -U postgres
 services:
