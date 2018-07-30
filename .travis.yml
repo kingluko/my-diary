@@ -3,9 +3,11 @@ language: python
 
 python:
   - "3.6.5"
-  
-postgres:
-  host: localhost
+
+
+env:
+  global:
+    - host="localhost"
   
 before_script:
   - psql -c 'CREATE DATABASE "my-diary";' -U postgres
