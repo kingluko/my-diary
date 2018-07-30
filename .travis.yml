@@ -1,9 +1,13 @@
 
 language: python
+
 python:
   - "3.6.5"
 before_script:
-  - createdb my-diary
+  - psql -c 'CREATE DATABASE my-diary;' -U kelvin
+  - psql -c CREATE TABLE entries (id serial PRIMARY KEY, user_id INT, title VARCHAR(200), story TEXT, date_created timestamp DEFAULT CURRENT_TIMESTAMP)
+  - psql -c CREATE TABLE users (id serial PRIMARY KEY, name VARCHAR(100), email VARCHAR(100), username VARCHAR(30), password VARCHAR(100))
+
 services:
   - postgresql
 
