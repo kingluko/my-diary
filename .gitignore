@@ -126,7 +126,7 @@ venv.bak/
 *.venv/
 *.vscode
 *__pycache__
-test.py
+rytest.py
 
 ### venv ###
 # Virtualenv
