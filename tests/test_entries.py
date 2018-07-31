@@ -15,6 +15,8 @@ class TestUsers(unittest.TestCase):
     def setUp(self):
         self.app = create_app('testing')
         self.client = self.app.test_client()
+        self.app_context = self.app.app_context()
+        self.app_context.push()
         self.data = {            
             "username": "kingluko",
             "password": "ankers3"
@@ -37,7 +39,7 @@ class TestUsers(unittest.TestCase):
 
     def test_get_entries(self):
         # signs up user
-        signup = self.client.post('/api/v1/auth/signup', data=json.dumps(self.data2), content_type='application/json')
+        self.client.post('/api/v1/auth/signup', data=json.dumps(self.data2), content_type='application/json')
         # sign in user and existing user
         results = self.client.post(
             '/api/v1/auth/signin', data=json.dumps(self.data),
@@ -48,7 +50,7 @@ class TestUsers(unittest.TestCase):
             "Content-Type": "application/json",
             "x-access-token": user_token}
         # posts an entry
-        entry = self.client.post('/api/v1/entries', data=json.dumps(self.entry), content_type='application/json')
+        entry = self.client.post('/api/v1/entries', data=json.dumps(self.entry), content_type='application/json', headers=header)
         # gets entries of an existing user
         response = self.client.get(
             '/api/v1/entries',            
@@ -60,7 +62,7 @@ class TestUsers(unittest.TestCase):
 
     def test_post_entry(self):
         # signs up user
-        signup = self.client.post('/api/v1/auth/signup', data=json.dumps(self.data2), content_type='application/json')
+        self.client.post('/api/v1/auth/signup', data=json.dumps(self.data2), content_type='application/json')
         # sign in an existing user
         results = self.client.post(
             '/api/v1/auth/signin', data=json.dumps(self.data),
@@ -79,8 +81,8 @@ class TestUsers(unittest.TestCase):
 
     def test_validate_entries(self):
         # signs up user
-        signup = self.client.post('/api/v1/auth/signup', data=json.dumps(self.data2), content_type='application/json')
-        # signs in an existing user
+        self.client.post('/api/v1/auth/signup', data=json.dumps(self.data2), content_type='application/json')
+        # signs in a user to get token
         results = self.client.post(
             '/api/v1/auth/signin', data=json.dumps(self.data),
             content_type='application/json')        
