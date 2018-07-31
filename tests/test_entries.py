@@ -32,8 +32,8 @@ class TestUsers(unittest.TestCase):
     def test_get_entries(self):
         # sign in user and existing user
         results = self.client.post(
-            'api/v1/auth/signin', data=json.dumps(self.data),
-            content_type='application/json')        
+            '/api/v1/auth/signin', data=json.dumps(self.data),
+            content_type='application/json')
         user_response = json.loads(results.get_data(as_text=True))
         user_token = user_response["token"]
         header = {
@@ -51,7 +51,7 @@ class TestUsers(unittest.TestCase):
     def test_post_entry(self):
         # sign in an existing user
         results = self.client.post(
-            'api/v1/auth/signin', data=json.dumps(self.data),
+            '/api/v1/auth/signin', data=json.dumps(self.data),
             content_type='application/json')        
         user_response = json.loads(results.get_data(as_text=True))
         user_token = user_response["token"]
@@ -68,7 +68,7 @@ class TestUsers(unittest.TestCase):
     def test_validate_entries(self):
         # signs in an existing user
         results = self.client.post(
-            'api/v1/auth/signin', data=json.dumps(self.data),
+            '/api/v1/auth/signin', data=json.dumps(self.data),
             content_type='application/json')        
         user_response = json.loads(results.get_data(as_text=True))
         user_token = user_response["token"]
@@ -85,7 +85,7 @@ class TestUsers(unittest.TestCase):
     def test_put_delete_entry(self):
         # user signs in
         results = self.client.post(
-            'api/v1/auth/signin', data=json.dumps(self.data),
+            '/api/v1/auth/signin', data=json.dumps(self.data),
             content_type='application/json') 
         # token is generated     
         user_response = json.loads(results.get_data(as_text=True))

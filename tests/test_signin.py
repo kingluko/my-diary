@@ -23,7 +23,7 @@ class TestUsers(unittest.TestCase):
     def tests_user_signin(self):
         """This method tests if the user can sign in"""
         # signs in an existing
-        rs = self.client.post('api/v1/auth/signin', data=json.dumps(self.data), content_type='application/json')
+        rs = self.client.post('/api/v1/auth/signin', data=json.dumps(self.data), content_type='application/json')
         self.assertEqual(rs.status_code, 201)
         rp = json.loads(rs.data)
         self.assertEqual(rp["message"], "You have successfully logged in")
@@ -40,6 +40,6 @@ class TestUsers(unittest.TestCase):
 
     def tests_access_token(self):
         """This method tests if a token is generated on signin"""
-        rs = self.client.post('api/v1/auth/signin', data=json.dumps(self.data), content_type='application/json')
+        rs = self.client.post('/api/v1/auth/signin', data=json.dumps(self.data), content_type='application/json')
         rp = json.loads(rs.data)
         self.assertIn('token', rp)
