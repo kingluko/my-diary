@@ -4,10 +4,10 @@ from app.instance.config import config_app
 import psycopg2
 import os
 
-if config_app['testing']:
-    db_name = os.getenv('DATABASE_TESTS')
-else:
-    db_name = os.getenv('DATABASE_NAME')
+# if config_app['testing']:
+#     db_name = os.getenv('DATABASE_TESTS')
+# else:
+db_name = os.getenv('DATABASE_NAME')
 
 db_user = os.getenv('DATABASE_USER')
 db_password = os.getenv('DATABASE_PASSWORD')
