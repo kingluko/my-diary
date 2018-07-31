@@ -2,14 +2,21 @@
 This is an Andela Bootcamp Challenge that provides a platform in which users can pen down their thoughts and feelings
 # Contains
 This project contains the following endpoints for the API
+
 | Endpoint | **Functionality** |
-| ------ | ------ |
+
 | **POST /auth/signup** | Create an account |
+
 | **POST /auth/signin** | Login a user |
+
 | **GET /entries** | Fetch all entries |
+
 | **GET /entries/<entryId>** | Fetch a single entry |
+
 |**POST /entries**| Create an entry |
+
 | **PUT /entries/<entryId>** | Modify an entry |
+
 | **DELETE /entries/<entryId>** | Delete and Entry|
 
 # Prereqisites
