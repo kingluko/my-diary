@@ -51,7 +51,7 @@ View on postman<br>
 
 # Documentation
 The documentation for the API can be accessed on:<br>
-`https://mydiaryapi1.docs.apiary.io/#`
+https://mydiaryapi1.docs.apiary.io/
 
 # Heroku
 The app is live on heroku with the link below:<br>`
