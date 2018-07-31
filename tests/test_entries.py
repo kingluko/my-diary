@@ -50,7 +50,7 @@ class TestUsers(unittest.TestCase):
             "Content-Type": "application/json",
             "x-access-token": user_token}
         # posts an entry
-        entry = self.client.post('/api/v1/entries', data=json.dumps(self.entry), content_type='application/json', headers=header)
+        self.client.post('/api/v1/entries', data=json.dumps(self.entry), content_type='application/json', headers=header)
         # gets entries of an existing user
         response = self.client.get(
             '/api/v1/entries',            
