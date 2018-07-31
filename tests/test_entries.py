@@ -116,4 +116,4 @@ class TestUsers(unittest.TestCase):
             '/api/v1/entries/3',
             content_type='application/json',
             headers=header, data=json.dumps({"title": "haha", "story": "check"}))
-        self.assertEquals(new_response.status_code, 201)
+        self.assertEquals(new_response.status_code, 404)
