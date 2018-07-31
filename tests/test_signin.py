@@ -16,12 +16,20 @@ class TestUsers(unittest.TestCase):
         self.app = create_app('testing')
         self.client = self.app.test_client()
         self.data = {            
-            "username": "manu",
-            "password": "patricia"
-            }
-    
+            "username": "kingluko",
+            "password": "ankers3"
+        }
+        self.data2 = {
+            "name": "Kelvin Kitika",
+            "username": "kingluko",
+            "password": "ankers3",
+            "email": "postman1@gmal.com"
+        }
+            
     def tests_user_signin(self):
-        """This method tests if the user can sign in"""
+        """This method tests if the user can sign in"""        
+        # signs up a user
+        signup = self.client.post('/api/v1/auth/signup', data=json.dumps(self.data2), content_type='application/json')
         # signs in an existing
         rs = self.client.post('/api/v1/auth/signin', data=json.dumps(self.data), content_type='application/json')
         self.assertEqual(rs.status_code, 201)
