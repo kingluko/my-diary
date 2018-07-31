@@ -18,7 +18,6 @@ install:
 # command to run tests
 script:
   - pytest 
-  - pytest --cov=app
 
 after_success:
      - coveralls
