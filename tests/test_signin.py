@@ -18,7 +18,7 @@ class TestUsers(unittest.TestCase):
         self.data = {            
             "username": "manu",
             "password": "patricia"
-        }
+            }
     
     def tests_user_signin(self):
         """This method tests if the user can sign in"""
