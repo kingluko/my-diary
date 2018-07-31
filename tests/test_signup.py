@@ -17,9 +17,9 @@ class TestUsers(unittest.TestCase):
         self.client = self.app.test_client()
         self.data = {
             "name": "Kelvin Kitika",
-            "username": "kingluko",
-            "password": "ankers3",
-            "email": "postman1@gmal.com"
+            "username": "kingluko1",
+            "password": "ankers31",
+            "email": "postman11@gmal.com"
         }
         
     def test_user_signup(self):
