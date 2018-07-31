@@ -35,11 +35,11 @@ class TestUsers(unittest.TestCase):
             '/api/v1/auth/signin', data=json.dumps(self.data),
             content_type='application/json')
         user_response = json.loads(results.get_data(as_text=True))
-        user_token = user_response["token"]
+        user_token = user_response.get("token")
         header = {
             "Content-Type": "application/json",
             "x-access-token": user_token}
-        # egts entries of an existing user
+        # gets entries of an existing user
         response = self.client.get(
             '/api/v1/entries',            
             content_type='application/json',
@@ -54,7 +54,7 @@ class TestUsers(unittest.TestCase):
             '/api/v1/auth/signin', data=json.dumps(self.data),
             content_type='application/json')        
         user_response = json.loads(results.get_data(as_text=True))
-        user_token = user_response["token"]
+        user_token = user_response.get("token")
         header = {
             "Content-Type": "application/json",
             "x-access-token": user_token}
@@ -71,7 +71,7 @@ class TestUsers(unittest.TestCase):
             '/api/v1/auth/signin', data=json.dumps(self.data),
             content_type='application/json')        
         user_response = json.loads(results.get_data(as_text=True))
-        user_token = user_response["token"]
+        user_token = user_response.get("token")
         header = {
             "Content-Type": "application/json",
             "x-access-token": user_token}
@@ -89,7 +89,7 @@ class TestUsers(unittest.TestCase):
             content_type='application/json') 
         # token is generated     
         user_response = json.loads(results.get_data(as_text=True))
-        user_token = user_response["token"]
+        user_token = user_response.get("token")
         header = {
             "Content-Type": "application/json",
             "x-access-token": user_token}        
