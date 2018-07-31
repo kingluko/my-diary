@@ -61,7 +61,7 @@ class SingleEntry(Resource):
             db.query(
                 "UPDATE entries SET title=%s, story=%s WHERE entry_id=%s",
                 (new_title, new_story, entry_id))
-            return{'message': 'Entry Updated'}, 201
+            return{'message': 'Entry Updated'}, 200
 
     @is_logged_in
     def get(self, user_id, entry_id):
@@ -83,4 +83,4 @@ class SingleEntry(Resource):
             db.query(
                 "DELETE FROM entries WHERE entry_id=%s", [entry_id]
             )
-            return {'message': 'Entry has been deleted successfully'}, 201
+            return {'message': 'Entry has been deleted successfully'}, 200
