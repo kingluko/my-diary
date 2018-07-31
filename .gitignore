@@ -76,7 +76,7 @@ local_settings.py
 db.sqlite3
 
 # Flask stuff:
-instance/
+
 .webassets-cache
 
 # Scrapy stuff:
@@ -101,7 +101,6 @@ celerybeat-schedule
 *.sage.py
 
 # Environments
-.env
 .venv
 env/
 venv/
@@ -123,8 +122,10 @@ venv.bak/
 .mypy_cache/
 
 ### Python Patch ###
-.venv/
-.vscode
+*.venv/
+*.vscode
+*__pycache__
+rytest.py
 
 ### venv ###
 # Virtualenv
