@@ -34,6 +34,8 @@ Clone the repository<br>
 `git clone https://github.com/kingluko/my-diary.git`<br>
 Create a virtual environment<br>
 `virtualenv --python=python3 yourenvname`<br>
+Export environments <br>
+`source .env`<br>
 Install the requirements within the virtual environment<br>
 `pip install -r requirements.txt`<br>
 Access Postgres via command prompt<br>
