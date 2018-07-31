@@ -35,11 +35,13 @@ Create a virtual environment<br>
 `virtualenv --python=python3 yourenvname`<br>
 Install the requirements within the virtual environment<br>
 `pip install -r requirements.txt`<br>
+Access Postgres via command prompt<br>
+`sudo -i -u postgres`<br>
 Create Database on postgresql<br>
 `- psql -c 'CREATE DATABASE "my-diary";' -U postgres`<br>
 Create a user to access the database <br>
 `- psql -c "CREATE USER kelvin WITH PASSWORD 'spongebob' createdb;" -U postgres`<br>
-Create tables for the database<br>
+Create tables for the database on python<br>
 `python database.py`<br>
 Run the program<br>
 `python run.py`<br>
