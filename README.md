@@ -4,7 +4,7 @@ This is an Andela Bootcamp Challenge that provides a platform in which users can
 # Contains
 This project contains the following endpoints for the API
 
-| Endpoint | **Functionality** |
+| **Endpoint** | **Functionality** |
 
 | **POST /auth/signup** | Create an account |
 
@@ -55,4 +55,4 @@ https://mydiaryapi1.docs.apiary.io/
 
 # Heroku
 The app is live on heroku with the link below:<br>`
-`https://my-diary-v2.herokuapp.com/api/v1`
+https://my-diary-v2.herokuapp.com/api/v1
