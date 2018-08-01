@@ -18,7 +18,7 @@ This project contains the following endpoints for the API
 
 | **PUT /entries/<entryId>** | Modify an entry |
 
-| **DELETE /entries/<entryId>** | Delete and Entry|
+| **DELETE /entries/<entryId>** | Delete an Entry|
 
 # Prereqisites
 
