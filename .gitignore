@@ -127,7 +127,8 @@ venv.bak/
 *.vscode
 *__pycache__
 rytest.py
-.env
+*.env
+
 ### venv ###
 # Virtualenv
 # http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
