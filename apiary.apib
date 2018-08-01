@@ -1,0 +1,120 @@
+FORMAT: 1A
+HOST: https://my-diary-v2.herokuapp.com
+
+# My Diary API
+
+This is an Andela Bootcamp Challenge that provides a platform in which users can pen down their thoughts and feelings
+Once you are logged in copy the token header with the key `x-access-token`:`token`
+
+## Sign Up [/api/v1/auth/signup]
+A user will be requested to sign up in order to access the app
+### Signup [POST]
+
++ Request (application/json)
+
+        {
+            "name": "Kelvin",
+            "username":"kitika",
+            "email":"kelvin.kitika@gmail.com",
+            "password":"spongebob"
+        }
+
++ Response 201 (application/json)
+
+    + Body
+    
+            {
+            "message": "You have successfully logged in"
+            }
+
+## Sign In [/api/v1/auth/signin]
+### Sign in [POST]
+
+A user who has created the account can sign in to access the app
++ Request (application/json)
+
+        {
+          "username":"kitika",
+          "password":"spongebob"
+        }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+            "message": "You have successfully logged in"
+            }
+            
+## All Entries [/api/v1/entries]
+### Post an entry [POST]
+
+A user who is signed in can create an entry
++ Request (application/json)
+
+        {
+          "title":"This is a title",
+          "story":"This is a story"
+        }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+            "message": "Entry posted successfully"
+            }
+            
+### Get all Entries [GET]
+A user who is logged in can get all his entries
++ Response 201 (application/json)
+
+    + Body
+    
+            {
+            "message": "Entries found"
+            }
+
+## Single Entry [/api/v1/entries/1]
+### Get an entry [GET]
+
+A user who is signed in can get an entry from the database
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "message": "Entry found"
+            }
+            
+### Update an Entry [PUT]
+A user can update their own 
+
++ Request (application/json)
+
+        {
+          "title":"This is a title",
+          "story":"This is a story"
+        }
++ Response 201 (application/json)
+    + Body
+    
+                {
+                "message": "Entry Updated"
+                }
+
+
+
+### Deletes an Entry [DELETE]
+A user can update their own 
++ Response 201 (application/json)
+
+    + Body
+    
+                {
+                "message": "Entry has been deleted successfully"
+                }
+
+
+
