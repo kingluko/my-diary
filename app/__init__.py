@@ -4,9 +4,7 @@ from app.instance.config import config_app
 import psycopg2
 import os
 
-# if config_app['testing']:
-#     db_name = os.getenv('DATABASE_TESTS')
-# else:
+
 db_name = os.getenv('DATABASE_NAME')
 
 db_user = os.getenv('DATABASE_USER')
@@ -44,9 +42,7 @@ def create_app(configuration):
     app.config.from_object(config_app[configuration])
     from app.resources.entries_resource import AllEntries, SingleEntry
     from app.resources.user_resource import SigninResource, SignupResource
-    # FIXME
-    # use fstring to map url
-    # url = "api/v1" 
+    
 
     api.add_resource(SignupResource, '/api/v1/auth/signup')
     api.add_resource(SigninResource, '/api/v1/auth/signin')

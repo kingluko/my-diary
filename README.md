@@ -34,8 +34,6 @@ Clone the repository<br>
 `git clone https://github.com/kingluko/my-diary.git`<br>
 Create a virtual environment<br>
 `virtualenv --python=python3 yourenvname`<br>
-Export environments <br>
-`source .env`<br>
 Install the requirements within the virtual environment<br>
 `pip install -r requirements.txt`<br>
 Access Postgres via command prompt<br>
@@ -43,7 +41,22 @@ Access Postgres via command prompt<br>
 Create Database on postgresql<br>
 `- psql -c 'CREATE DATABASE "my-diary";' -U postgres`<br>
 Create a user to access the database <br>
-`- psql -c "CREATE USER kelvin WITH PASSWORD 'spongebob' createdb;" -U postgres`<br>
+`- psql -c "CREATE USER <yourusername> WITH PASSWORD '<yourpassword>' createdb;" -U postgres`<br>
+Create a .env file and input configurations to the environment<br>
+```
+# API Exports
+export FLASK_APP="run.py"
+export SECRET="secret"
+export APP_SETTINGS="development"
+# Database Exports
+export DATABASE_URL="postgres://localhost/my-diary"
+export DATABASE_NAME="my-diary"
+export DATABASE_USER="<yourusername>"
+export DATABASE_PASSWORD="<yourpassword>"
+export DATABASE_HOST="localhost"
+```
+Export environments <br>
+`source .env`<br>
 Create tables for the database on python<br>
 `python database.py`<br>
 Run the program<br>
