@@ -63,4 +63,4 @@ class Entries:
                 })
             entries.append(new_dict)
         return entries
-    pass
+    
