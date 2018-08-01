@@ -3,6 +3,7 @@ from flask_restful import Api, Resource
 from app.instance.config import config_app
 import psycopg2
 import os
+from flask_cors import CORS
 
 # if config_app['testing']:
 #     db_name = os.getenv('DATABASE_TESTS')
@@ -41,6 +42,7 @@ def create_app(configuration):
     """Configures app based on the environment"""
     app = Flask(__name__, instance_relative_config=True)
     api = Api(app)
+    CORS(app)
     app.config.from_object(config_app[configuration])
     from app.resources.entries_resource import AllEntries, SingleEntry
     from app.resources.user_resource import SigninResource, SignupResource
