@@ -120,7 +120,6 @@ hr{
     background: #f4f4f4;
     border-color: transparent;
     height: 15px;
-    width: 180px;
     font-family: Arial, Helvetica, sans-serif;
 }
 .signin-submit .button{
@@ -142,6 +141,10 @@ hr{
 .container .wrapper{
     padding-top: 20px;
     padding-bottom: 50px;
+}
+.container .wrapper .signup p{
+    padding-top: 20px;
+    font-size: 15px;
 }
 
 /* NEW DIARY ENTRY */
@@ -302,7 +305,7 @@ div.input label{
 p#slogan{
     font-size: 30px;
 }
-.button, .signup-submit .button,.entry-form .button, .signin-submit .button {
+button.button, .signup-submit button,.entry-form .button, .signin-submit .button {
     width: 60%;
     margin-top: 15px;
     font-size: 12px;
@@ -314,12 +317,4 @@ textarea#text-area{
 .input input{
     width:60%;
 }
-}
-@media(max-width: 599px){
-    .button, .signup-submit .button,.entry-form .button, .signin-submit .button {
-        width: 60%;
-        margin-top: 15px;
-        font-size: 9px;
-        border-radius: 50px;
-    }
 }
