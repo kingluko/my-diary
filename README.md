@@ -69,5 +69,5 @@ The documentation for the API can be accessed on:<br>
 https://mydiaryapi1.docs.apiary.io/
 
 # Heroku
-The app is live on heroku with the link below:<br>`
+The app is live on heroku with the link below:<br>
 https://my-diary-v2.herokuapp.com/api/v1
