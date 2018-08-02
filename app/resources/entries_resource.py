@@ -27,6 +27,7 @@ class AllEntries(Resource):
 
     @is_logged_in
     def post(self, user_id):
+        """"This method adds a story to the database"""
         results = AllEntries.parser.parse_args()
         title = results.get('title')
         story = results.get('story')
@@ -41,23 +42,25 @@ class AllEntries(Resource):
         entry = Entries.get(user_id=user_id)
         if entry:
             return {
+                # displays the entries as dictionaries
                 'message': 'Entries found', 'entry': Entries.make_dict(entry)}, 201
         else:
-            return {'message': 'Entries not found'}, 404            
+            return {'message': 'Entries not found'}, 404
 
 
 class SingleEntry(Resource):
     @is_logged_in
     def put(self, user_id, entry_id):
-        """Edit an Entry"""
+        """This method is used to update an Entry"""
         entry = Entries.get(user_id=user_id, entry_id=entry_id)
         if not entry:
+            # returns a message if the entry was not found
             return {'message': 'The entry does not exist'}, 404
         else:
             results = request.get_json()
             new_title = results['title']
             new_story = results['story']
-
+            # Updates the entry stored in the db with new data
             db.query(
                 "UPDATE entries SET title=%s, story=%s WHERE entry_id=%s",
                 (new_title, new_story, entry_id))
@@ -71,15 +74,17 @@ class SingleEntry(Resource):
             return {
                 'message': 'Entry found', 'entry': Entries.make_dict(entry)}
         else:
-            return {'message': 'Entry not found'}, 404        
+            return {'message': 'Entry not found'}, 404
 
     @is_logged_in
     def delete(self, user_id, entry_id):
         """This method is used to delte an entry"""
         entry = Entries.get(user_id=user_id, entry_id=entry_id)
+        # if entry is not found returns error
         if not entry:
             return {'message': 'Entry not found'}, 404
         else:
+            # deletes from db
             db.query(
                 "DELETE FROM entries WHERE entry_id=%s", [entry_id]
             )

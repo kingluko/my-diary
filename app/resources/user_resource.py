@@ -40,6 +40,7 @@ class SignupResource(Resource):
         help='Enter a valid password!')
 
     def post(self):
+        # parses arguments
         results = SignupResource.parser.parse_args()
         name = results.get('name')
         username = results.get('username')
@@ -50,10 +51,11 @@ class SignupResource(Resource):
             return {'message': 'Username cannot be less than 4'}, 400
         if len(password) < 6:
             return {'message': 'Password cannot be less than 6'}, 400
-        # Check if email exists on db      
-        # if not sign up
+
+        # Check if email exists on db
         db.query("SELECT * FROM users WHERE email = %s OR username = %s", [email, username])
         data = db.cur.fetchone()
+        # if not sign up
         if not data:
             user = Users(
                 name=name, email=email, username=username, password=password)
@@ -61,8 +63,6 @@ class SignupResource(Resource):
             return {'message': 'You have registered succesfully'}, 201
         else:
             return {'message': 'User already exists'}, 400
-# TODO
-# Make username and email unique
 
 
 class SigninResource(Resource):
@@ -91,19 +91,20 @@ class SigninResource(Resource):
         # Check if the username exists
         data = db.cur.fetchone()
         if data:
+            # Checks for password stored
             password = data[4]
             if sha256_crypt.verify(password_entered, password):
-                # Generate a token for the user
-                user_id = int(data[0])                
+                # Generate a token for the user if checks passed
+                user_id = int(data[0])
                 token = jwt.encode(
                     {'user_id': user_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
-                    str(Config.SECRET))                
+                    str(Config.SECRET))
                 return {'message': 'You have successfully logged in',
                         'token': token.decode('UTF-8')}, 201
-                # FIXME
-                # Assign user token and login
             else:
                 return {'message': 'Invalid password'}, 400
         else:
+            # returns an error when user does not exist
             return {'message': 'User not found'}, 400
+            # closes the db connection
         db.close()
