@@ -146,6 +146,11 @@ hr{
     padding-top: 20px;
     font-size: 15px;
 }
+.container .wrapper .signin p{
+    padding-top: 20px;
+    font-size: 15px;
+}
+
 
 /* NEW DIARY ENTRY */
 .container .wrapper .holder{
