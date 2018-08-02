@@ -240,17 +240,17 @@ table.entriestable td{
     border: 1px solid #AAAAAA;
     padding: 3px 2px;
 }
-table.entriestable tbody td {
+table.entriestable  td {
     font-size: 16px;
     color: #333333;
     padding: 10px;
     overflow: hidden;
 }
-table.entriestable tbody td a{
+table.entriestable  td a{
     text-decoration: none;
     color: #00818a;
 }
-table.entriestable tbody td a:hover{
+table.entriestable  td a:hover{
     font-weight: bold;
     color: #000000;
 }
