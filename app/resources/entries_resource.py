@@ -58,8 +58,8 @@ class SingleEntry(Resource):
             return {'message': 'The entry does not exist'}, 404
         else:
             results = request.get_json()
-            new_title = results['title']
-            new_story = results['story']
+            new_title = results['title'].strip()
+            new_story = results['story'].strip()
             # adds validation
             if new_title and new_story:
                 db.query(
