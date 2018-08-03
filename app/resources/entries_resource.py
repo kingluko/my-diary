@@ -30,10 +30,13 @@ class AllEntries(Resource):
         results = AllEntries.parser.parse_args()
         title = results.get('title')
         story = results.get('story')
-        # Adding post to database
-        entry = Entries(title=title, user_id=user_id, story=story)
-        entry.post()
-        return {'message': 'Entry posted successfully'}, 201
+        # Adding post to database if not blank
+        if title and story:
+            entry = Entries(title=title, user_id=user_id, story=story)
+            entry.post()
+            return {'message': 'Entry posted successfully'}, 201
+        else:
+            return {'message': 'Fields cannot be blank'}, 400
 
     @is_logged_in
     def get(self, user_id, entry_id=None):
@@ -43,7 +46,7 @@ class AllEntries(Resource):
             return {
                 'message': 'Entries found', 'entry': Entries.make_dict(entry)}, 201
         else:
-            return {'message': 'Entries not found'}, 404            
+            return {'message': 'Entries not found'}, 404
 
 
 class SingleEntry(Resource):
@@ -57,11 +60,14 @@ class SingleEntry(Resource):
             results = request.get_json()
             new_title = results['title']
             new_story = results['story']
-
-            db.query(
-                "UPDATE entries SET title=%s, story=%s WHERE entry_id=%s",
-                (new_title, new_story, entry_id))
-            return{'message': 'Entry Updated'}, 200
+            # adds validation
+            if new_title and new_story:
+                db.query(
+                    "UPDATE entries SET title=%s, story=%s WHERE entry_id=%s",
+                    (new_title, new_story, entry_id))
+                return{'message': 'Entry Updated'}, 200
+            else:
+                return{'message': 'Field cannot be blank'}, 400
 
     @is_logged_in
     def get(self, user_id, entry_id):
@@ -71,7 +77,7 @@ class SingleEntry(Resource):
             return {
                 'message': 'Entry found', 'entry': Entries.make_dict(entry)}
         else:
-            return {'message': 'Entry not found'}, 404        
+            return {'message': 'Entry not found'}, 404
 
     @is_logged_in
     def delete(self, user_id, entry_id):
