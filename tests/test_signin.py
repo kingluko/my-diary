@@ -39,7 +39,7 @@ class TestUsers(unittest.TestCase):
         self.assertEqual(rp["message"], "You have successfully logged in")
         # test validations
         rs = self.client.post('/api/v1/auth/signin', data=json.dumps({
-            "username": " ", "password": "patricia"}),
+            "username": "man", "password": "patricia"}),
             content_type='application/json')
         self.assertEqual(rs.status_code, 400)
         # validates password
