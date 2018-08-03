@@ -86,26 +86,29 @@ class SigninResource(Resource):
         username = results.get('username')
         password_entered = results.get('password')
 
-        # check if the username exists
-        db.query(
-            "SELECT * FROM users WHERE username = %s", [username])
-        # Check if the username exists
-        data = db.cur.fetchone()
-        if data:
-            # Checks for password stored
-            password = data[4]
-            if sha256_crypt.verify(password_entered, password):
-                # Generate a token for the user if checks passed
-                user_id = int(data[0])
-                token = jwt.encode(
-                    {'user_id': user_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
-                    str(Config.SECRET))
-                return {'message': 'You have successfully logged in',
-                        'token': token.decode('UTF-8')}, 201
+       if username and password_entered:
+                # check if the username exists
+            db.query(
+                "SELECT * FROM users WHERE username = %s", [username])
+            # Check if the username exists
+            data = db.cur.fetchone()
+            if data:
+                password = data[4]
+                if sha256_crypt.verify(password_entered, password):
+                    # Generate a token for the user
+                    user_id = int(data[0])
+                    token = jwt.encode(
+                        {'user_id': user_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
+                        str(Config.SECRET))
+                    return {'message': 'You have successfully logged in',
+                            'token': token.decode('UTF-8')}, 201
+                    # FIXME
+                    # Assign user token and login
+                else:
+                    return {'message': 'Invalid password'}, 400
             else:
-                return {'message': 'Invalid password'}, 400
+                return {'message': 'User not found'}, 400
+
+            db.close()
         else:
-            # returns an error when user does not exist
-            return {'message': 'User not found'}, 400
-            # closes the db connection
-        db.close()
+            return {'message': 'Please enter login details'}
