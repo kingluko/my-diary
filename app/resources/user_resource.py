@@ -20,7 +20,7 @@ class SignupResource(Resource):
         'name',
         required=True,
         trim=True,
-        type=inputs.regex(r"(.*\S.*)"),
+        type=inputs.regex(r"(^[A-Za-z0-9-]+$)"),
         help='Enter a Valid Name')
     parser.add_argument(
         'email',
@@ -32,6 +32,7 @@ class SignupResource(Resource):
         'username',
         required=True,
         trim=True,
+        type=inputs.regex(r"(^[A-Za-z0-9-]+$)"),
         help='Enter a valid username!')
     parser.add_argument(
         'password',
