@@ -85,8 +85,7 @@ class SigninResource(Resource):
         results = SigninResource.parser.parse_args()
         username = results.get('username')
         password_entered = results.get('password')
-
-       if username and password_entered:
+        if username and password_entered:
                 # check if the username exists
             db.query(
                 "SELECT * FROM users WHERE username = %s", [username])
